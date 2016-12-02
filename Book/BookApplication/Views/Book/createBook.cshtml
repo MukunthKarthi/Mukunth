@@ -1,0 +1,19 @@
+﻿@model AppModel.BookModel
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+
+@using (Html.BeginForm("createBook", "Book", FormMethod.Post))
+{
+    <label for="Name">Name:</label>
+    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    <label for="Name">Author:</label>
+    @Html.TextBoxFor(x => x.Author, new { @class = "form-control" })
+    <label for="Name">Language:</label>
+    @Html.DropDownListFor(x => x.Language, Model.Languages ?? new List<SelectListItem>() { }, "--please select langueage", new { @class = "form-control" })
+    <label for="Name">ISBN:</label>
+    @Html.TextBoxFor(x => x.ISBN, new { @class = "form-control" })
+
+    <button type="submit" class="btn btn-default">Submit</button>
+}
+

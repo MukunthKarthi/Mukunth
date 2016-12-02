@@ -1,0 +1,57 @@
+﻿@model List<AppModel.BookModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>list</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript">
+        $('#searchlink').click(function () {
+            var Name = $('#Name').val();
+            var language = $('#language').val();
+            var Isbn = $('#Isbn').val();
+            var url = $(this).attr('href') + '?Name=' + Name + '&&language=' + language + '&&Isbn=' + Isbn;
+            location.href = url;
+            return false;
+        });
+    </script>
+
+</head>
+<body style="background-color:gainsboro">
+    <div>
+        @Html.TextArea("Name")
+        @Html.TextArea("language")
+        @Html.TextArea("Isbn")
+        @Html.ActionLink("Search", "search", "Book", new { id = "searchlink" })
+        @Html.ActionLink("Add Book", "createBook", "Book")
+        <table>
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Author</td>
+                    <td>Language</td>
+                    <td>ISBN</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Author</td>
+                        <td>@item.Language</td>
+                        <td>@item.ISBN</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
